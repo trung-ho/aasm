@@ -57,6 +57,9 @@ module AASM
 
       if @state_machine.config.no_direct_assignment
         @klass.send(:define_method, "#{@state_machine.config.column}=") do |state_name|
+          p aasm_name
+          p state_name
+          byebug
           if self.class.aasm(:"#{aasm_name}").state_machine.config.no_direct_assignment
             raise AASM::NoDirectAssignmentError.new('debug: direct assignment of AASM column has been disabled (see AASM configuration for this class)')
           else
