@@ -56,6 +56,7 @@ module AASM
       aasm_name = @name
 
       if @state_machine.config.no_direct_assignment
+        byebug
         @klass.send(:define_method, "#{@state_machine.config.column}=") do |state_name|
           p aasm_name
           p state_name
